@@ -4,7 +4,6 @@ class Solution {
     public List<Integer> findMissingElements(int[] nums) {
         int min = nums[0];
         int max = nums[0];
-
         Set<Integer> set = new HashSet<>();
         List<Integer> res = new ArrayList<>();
         for (int i = 0; i < nums.length; i++) {

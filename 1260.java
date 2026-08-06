@@ -10,9 +10,10 @@ class Solution {
             List<Integer> row = new ArrayList<>();
             for(int j = 0; j < n; j++)
             {
-                row.add(0);
+                row.add(grid[i][j]);
             }
             res.add(row);
         }
+        return res;
     }
 }
