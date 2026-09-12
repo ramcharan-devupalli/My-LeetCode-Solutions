@@ -1,0 +1,36 @@
+import java.util.*;
+
+class Solution {
+    public String largestOddNumber(String num) {
+        int lastOdd = -1;
+
+        for (int i = 0; i < num.length(); i++) {
+            int c = num.charAt(i) - '0';
+
+            if (c % 2 != 0) {
+                lastOdd = i;
+            }
+        }
+
+        if (lastOdd == -1) {
+            return "";
+        }
+
+        return num.substring(0, lastOdd + 1);
+    }
+}
+
+class OptimalSolution
+{
+    public String largestOddNumber(String num) {
+        for(int i = num.length() - 1; i >= 0; i--)
+        {
+            int c = num.charAt(i) - '0';
+            if(c % 2 != 0)
+            {
+                return num.substring(0, i + 1);
+            }
+        }
+        return "";
+    }
+}
