@@ -40,3 +40,44 @@ class Solution {
         return true;
     }
 }
+
+
+class Solution {
+
+    private ListNode reverse(ListNode node)
+    {
+        ListNode prev = null;
+        ListNode curr = node;
+        while(curr != null)
+        {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+
+    public boolean isPalindrome(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast.next != null && fast.next.next != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode rev = reverse(slow.next);
+        ListNode temp = head;
+        while(rev != null)
+        {
+            if(temp.val != rev.val)
+            {
+                return false;
+            }
+            temp = temp.next;
+            rev = rev.next;
+        }
+        return true;
+        
+    }
+}
