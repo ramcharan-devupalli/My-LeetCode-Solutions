@@ -6,6 +6,7 @@ class Solution {
         int currsum = 0;
         int result = Integer.MAX_VALUE;
         int minLength = Integer.MAX_VALUE;
+        int count = 0;
 
         int[] minlengthstillidx = new int[n];
 
@@ -20,21 +21,25 @@ class Solution {
 
             if(currsum == target)
             {
+                count++;
                 int length = j - i + 1;
 
-                if(i > 0 && minlengthstillidx[i - 1] != 0)
+                if(i > 0 && minlengthstillidx[i - 1] != Integer.MAX_VALUE)
                 {
                     result = Math.min(result,
                                       length + minlengthstillidx[i - 1]);
+                    i++;
                 }
-
                 minLength = Math.min(minLength, length);
             }
 
             minlengthstillidx[j] = minLength;
             j++;
         }
-
+        if(count > 2)
+        {
+            return -1;
+        }
         return result == Integer.MAX_VALUE ? -1 : result;
     }
 }
