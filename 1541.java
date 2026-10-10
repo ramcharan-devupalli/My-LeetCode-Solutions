@@ -1,0 +1,76 @@
+import java.util.*;
+
+class Solution {
+    public int minInsertions(String s) {
+        int n = s.length();
+        int count = 0;
+        char[] stack = new char[n];
+        int top = -1;
+        for(int i = 0; i < n; i++)
+        {
+            char c = s.charAt(i);
+            if(c == '(')
+            {
+                stack[++top] = c;
+            }
+            else
+            {
+                if(top == -1)
+                {
+                    count++;
+                }
+                else
+                {
+                    top--;
+                }
+                if(s.charAt(i + 1) == ')')
+                {
+                    i++;
+                }
+                else
+                {
+                    count++;
+                }
+            }
+        }
+        while(top > -1)
+        {
+            count = count + 2;
+            top--;
+        }
+        return count;
+    }
+}
+
+
+class Solution {
+    public int minInsertions(String s) {
+        int count = 0;
+        int open = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if (c == '(') {
+                open++;
+            } 
+            else {
+                if (i + 1 < s.length() && s.charAt(i + 1) == ')') {
+                    i++;
+                } 
+                else {
+                    count++;
+                }
+
+                if (open > 0) {
+                    open--;
+                } 
+                else {
+                    count++;
+                }
+            }
+        }
+
+        return count + (open * 2);
+    }
+}
